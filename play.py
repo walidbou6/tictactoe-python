@@ -4,7 +4,6 @@ import numpy as np
 from constants import *
 from draws import *
 from logic import *
-import time
 
 
 pygame.init()
@@ -24,7 +23,8 @@ board = np.zeros((BOARD_ROWS, BOARD_COLS))
 draw_lines(screen)
 player = 1
 game_over = False
-                    
+
+
 # mainloop
 while True:
     for event in pygame.event.get():
@@ -43,15 +43,12 @@ while True:
                 mark_square(board, clicked_row, clicked_col, player)
                 if check_win(screen, board, player):
                     game_over = True
-                    # time.sleep(2)
-                    # screen.fill(BG_COLOR)
-                    # board = np.zeros((BOARD_ROWS, BOARD_COLS))
-                    # text = font.render('WINNER!', False, TEXT_COLOR)
-                    # screen.blit(text, (WIDTH//6, WIDTH//6))
+                    disp_winner(screen, board, player, font)
 
+                if not game_over:
+                    player = player % 2 + 1
+                    draw_figures(screen, board)
 
-                player = player % 2 + 1
-                draw_figures(screen, board)
                 if is_board_full(board) and not check_win(screen, board, player):
                     screen.fill(BG_COLOR)
                     text = font.render('DRAW!', False, TEXT_COLOR)

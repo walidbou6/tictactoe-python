@@ -83,3 +83,19 @@ def restart(screen):
     board = np.zeros((BOARD_ROWS, BOARD_COLS))
     return player, board
     
+
+def disp_winner(screen, board, player, font):
+    draw_figures(screen, board)
+    s = pygame.Surface((WIDTH, HEIGHT))  # the size of your rect
+    s.set_alpha(220)                # alpha level
+    s.fill(BG_COLOR)           # this fills the entire surface
+    screen.blit(s, (0,0))    # (0,0) are the top-left coordinates
+    text = font.render('WINNER!', False, TEXT_COLOR)
+    screen.blit(text, (WIDTH//6, WIDTH//6))
+
+    if player==1:
+        pygame.draw.circle(screen, CIRCLE_COLOR, (SQUARE_SIZE+SQUARE_SIZE//2, SQUARE_SIZE+SQUARE_SIZE//2), 3*CIRCLE_RADIUS//2, CIRCLE_WIDTH)
+    elif player==2:
+        pygame.draw.line(screen, CROSS_COLOR, (SQUARE_SIZE, SQUARE_SIZE+SQUARE_SIZE), (SQUARE_SIZE+SQUARE_SIZE, SQUARE_SIZE), CROSS_WIDTH)
+        pygame.draw.line(screen, CROSS_COLOR, (SQUARE_SIZE, SQUARE_SIZE), (SQUARE_SIZE+SQUARE_SIZE, SQUARE_SIZE+SQUARE_SIZE), CROSS_WIDTH)
+

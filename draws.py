@@ -21,7 +21,7 @@ def draw_figures(screen, board):
     for r in range(BOARD_ROWS):
         for c in range(BOARD_COLS):
             if board[r][c] == 1:
-                pygame.draw.circle(screen, CIRCLE_COLOR, (int(c*SQUARE_SIZE+SQUARE_SIZE//2), int(r*SQUARE_SIZE+SQUARE_SIZE//2)), CIRCLE_RADIUS, CIRCLE_WIDTH)
+                pygame.draw.circle(screen, CIRCLE_COLOR, (c*SQUARE_SIZE+SQUARE_SIZE//2, r*SQUARE_SIZE+SQUARE_SIZE//2), CIRCLE_RADIUS, CIRCLE_WIDTH)
             elif board[r][c] == 2:
                 pygame.draw.line(screen, CROSS_COLOR, (c*SQUARE_SIZE+SPACE, r*SQUARE_SIZE+SQUARE_SIZE-SPACE), (c*SQUARE_SIZE+SQUARE_SIZE-SPACE, r*SQUARE_SIZE+SPACE), CROSS_WIDTH)
                 pygame.draw.line(screen, CROSS_COLOR, (c*SQUARE_SIZE+SPACE, r*SQUARE_SIZE+SPACE), (c*SQUARE_SIZE+SQUARE_SIZE-SPACE, r*SQUARE_SIZE+SQUARE_SIZE-SPACE), CROSS_WIDTH)
