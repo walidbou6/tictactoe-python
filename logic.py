@@ -84,18 +84,20 @@ def restart(screen):
     return player, board
     
 
-def disp_winner(screen, board, player, font):
+def disp_winner(screen, board, player, font, font2):
     draw_figures(screen, board)
-    s = pygame.Surface((WIDTH, HEIGHT))  # the size of your rect
-    s.set_alpha(220)                # alpha level
-    s.fill(BG_COLOR)           # this fills the entire surface
-    screen.blit(s, (0,0))    # (0,0) are the top-left coordinates
-    text = font.render('WINNER!', False, TEXT_COLOR)
-    screen.blit(text, (WIDTH//6, WIDTH//6))
+    s = pygame.Surface((WIDTH, HEIGHT))
+    s.set_alpha(220)
+    s.fill(BG_COLOR)
+    screen.blit(s, (0,0))
+    screen.blit(font.render('WINNER!', False, TEXT_COLOR), (WIDTH//6, WIDTH//6))
+    screen.blit(font2.render('Press "r" key to restart', False, TEXT_COLOR), (SPACE//6, WIDTH-SPACE//2))
 
     if player==1:
         pygame.draw.circle(screen, CIRCLE_COLOR, (SQUARE_SIZE+SQUARE_SIZE//2, SQUARE_SIZE+SQUARE_SIZE//2), 3*CIRCLE_RADIUS//2, CIRCLE_WIDTH)
     elif player==2:
         pygame.draw.line(screen, CROSS_COLOR, (SQUARE_SIZE, SQUARE_SIZE+SQUARE_SIZE), (SQUARE_SIZE+SQUARE_SIZE, SQUARE_SIZE), CROSS_WIDTH)
         pygame.draw.line(screen, CROSS_COLOR, (SQUARE_SIZE, SQUARE_SIZE), (SQUARE_SIZE+SQUARE_SIZE, SQUARE_SIZE+SQUARE_SIZE), CROSS_WIDTH)
+    
+    pygame.mixer.Sound.play(win_sound)
 
